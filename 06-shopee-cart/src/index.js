@@ -1,7 +1,15 @@
+// src/index.js
+
 import * as cartService from "./services/cart.js";
 import createItem from "./services/item.js";
+import * as couponService from "./services/coupon.js";
 
-const myCart = [];
+//const myCart = [];
+const myCart = {
+  items: [],
+  couponCode: null, // Cupom de desconto
+};
+
 const myWhishList = [];
 
 console.log("Welcome to the your Shopee Cart!");
@@ -23,3 +31,6 @@ await cartService.displaycart(myCart);
 // await cartService.deleteItem(myCart, item2.name);
 // await cartService.deleteItem(myCart, item1.name);
 await cartService.calculateTotal(myCart);
+
+console.log("\n🎁 Aplicando CUPOM: DESCONTO20");
+await couponService.addCoupon(myCart, "DESCONTO20");
