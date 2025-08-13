@@ -1,3 +1,5 @@
+// services/qr-code/handle.js
+
 import qr from "qrcode-terminal";
 import chalk from "chalk";
 

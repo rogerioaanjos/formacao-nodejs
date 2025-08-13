@@ -1,3 +1,5 @@
+// prompt-schema/prompt-schema-qrcodejs
+
 import chalk from "chalk";
 
 const promptSchemaQRCode = [

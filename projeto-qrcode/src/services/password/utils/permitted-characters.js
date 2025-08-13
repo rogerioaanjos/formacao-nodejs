@@ -1,3 +1,5 @@
+// services/password/utils/permitted-characters.js
+
 //extract method
 async function permittedCharacters() {
   let permitted = [];
