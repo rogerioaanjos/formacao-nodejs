@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>F1 Teams & Drivers</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f2f2f2;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin: 20px 0;
+    }
+
+    .section {
+      margin: 20px 0;
+    }
+
+    .section h2 {
+      margin: 0;
+      padding: 15px 0;
+      color: #fff;
+      text-align: center;
+      font-size: 20px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-radius: 4px;
+    }
+
+    .teams-title { background-color: #007bff; }
+    .drivers-title { background-color: #28a745; }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 220px);
+      justify-content: center;
+      gap: 35px;
+      padding: 15px;
+    }
+
+    .card {
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      width: 220px;
+      text-align: left;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border-top: 3px solid transparent;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    .card h3 {
+      margin: 10px 0;
+      font-size: 18px;
+      color: #222;
+      text-align: center;
+    }
+
+    .card p {
+      margin: 5px 0;
+      font-size: 14px;
+    }
+
+    .label-team { color: #003366; font-weight: bold; }
+    .value-team { color: #336699; }
+    .label-driver { color: #1a3d1a; font-weight: bold; }
+    .value-driver { color: #339966; }
+
+    .team-card { border-top: 3px solid #007bff; }
+    .driver-card { border-top: 3px solid #28a745; }
+
+    @media (max-width: 960px) {
+      .cards { grid-template-columns: repeat(2, 220px); }
+    }
+
+    @media (max-width: 480px) {
+      .cards { grid-template-columns: 220px; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Formula 1 Teams & Drivers</h1>
+
+  <div class="section">
+    <h2 class="teams-title">Teams</h2>
+    <div id="teams" class="cards"></div>
+  </div>
+
+  <div class="section">
+    <h2 class="drivers-title">Drivers</h2>
+    <div id="drivers" class="cards"></div>
+  </div>
+
+  <script>
+    async function fetchTeams() {
+      const res = await fetch('/teams');
+      const data = await res.json();
+      const container = document.getElementById('teams');
+      container.innerHTML = data.teams.map(team => `
+        <div class="card team-card">
+          <h3>${team.name}</h3>
+          <p><span class="label-team">Base:</span> <span class="value-team">${team.base}</span></p>
+          <p><span class="label-team">World Championships:</span> <span class="value-team">${team.worldChampionships}</span></p>
+          <p><span class="label-team">First GP:</span> <span class="value-team">${team.firstGP}</span></p>
+          <p><span class="label-team">Principal:</span> <span class="value-team">${team.principal}</span></p>
+        </div>
+      `).join('');
+    }
+
+    async function fetchDrivers() {
+      const res = await fetch('/drivers');
+      const data = await res.json();
+      const container = document.getElementById('drivers');
+      container.innerHTML = data.drivers.map(driver => `
+        <div class="card driver-card">
+          <h3>${driver.name}</h3>
+          <p><span class="label-driver">Team:</span> <span class="value-driver">${driver.team}</span></p>
+          <p><span class="label-driver">Nationality:</span> <span class="value-driver">${driver.nationality}</span></p>
+          <p><span class="label-driver">Wins:</span> <span class="value-driver">${driver.wins}</span></p>
+          <p><span class="label-driver">Podiums:</span> <span class="value-driver">${driver.podiums}</span></p>
+          <p><span class="label-driver">Championships:</span> <span class="value-driver">${driver.championships}</span></p>
+        </div>
+      `).join('');
+    }
+
+    fetchTeams();
+    fetchDrivers();
+  </script>
+</body>
+</html>
