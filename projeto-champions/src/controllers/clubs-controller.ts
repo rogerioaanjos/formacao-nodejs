@@ -1,3 +1,5 @@
+// src/controllers/clubs-controller.ts
+
 import { Request, Response } from "express";
 import * as service from "../services/clubs-service";
 

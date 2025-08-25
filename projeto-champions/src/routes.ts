@@ -1,3 +1,5 @@
+// src/routes.ts
+
 import { Router } from "express";
 import * as PlayerController from "./controllers/players-controller";
 import * as ClubsController from "./controllers/clubs-controller";

@@ -1,3 +1,5 @@
+// src/utils/http-helper.ts
+
 import { HttpResponse } from "../models/http-response-model";
 
 export const ok = async (data: any): Promise<HttpResponse> => {
@@ -29,3 +31,11 @@ export const badRequest = async (): Promise<HttpResponse> => {
     body: null,
   };
 };
+
+export const notFound = async (data: any): Promise<HttpResponse> => {
+  return {
+    statusCode: 404,
+    body: data || null,
+  };
+};
+

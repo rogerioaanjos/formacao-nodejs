@@ -1,3 +1,5 @@
+// src/models/statistics-model.ts
+
 export interface StatisticsModel {
   Overall: number;
   Pace: number;

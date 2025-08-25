@@ -1,3 +1,5 @@
+// src/models/player-model.ts
+
 export interface PlayerModel {
   id: number;
   name: string;

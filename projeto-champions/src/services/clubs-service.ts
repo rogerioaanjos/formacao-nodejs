@@ -1,3 +1,5 @@
+// src/services/clubs-service.ts
+
 import * as HttpResponse from "../utils/http-helper";
 import * as repository from "../repositories/clubs-repository";
 

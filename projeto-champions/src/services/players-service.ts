@@ -1,3 +1,5 @@
+// src/services/players-service.ts
+
 import { PlayerModel } from "../models/player-model";
 import { StatisticsModel } from "../models/statistics-model";
 import * as PlayerRepostory from "../repositories/players-repository";
@@ -64,8 +66,8 @@ export const updatePlayerService = async (
   const data = await PlayerRepostory.findAndModifyPlayer(id, statistics);
   let response = null;
 
-  if (Object.keys(data).length === 0) {
-    response = await HttpResponse.badRequest();
+   if (!data) {
+    return HttpResponse.notFound({ message: "Player not found" });
   } else {
     response = await HttpResponse.ok(data);
   }
